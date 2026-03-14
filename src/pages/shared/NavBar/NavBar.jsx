@@ -1,5 +1,5 @@
 import { use, useState, useEffect, useRef } from "react";
-import { NavLink, useLocation } from "react-router";
+import { NavLink, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../../context/AuthContext/AuthContext";
 import toast from "react-hot-toast";
 import {
@@ -28,8 +28,10 @@ export const NavBar = () => {
   const [avatarOpen, setAvatarOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [logoutLoading, setLogoutLoading] = useState(false);
   const dropRef = useRef(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   /* close dropdown on outside click */
   useEffect(() => {
@@ -55,10 +57,18 @@ export const NavBar = () => {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  const handleLogout = () => {
-    signOutUser();
-    toast.success("Logged out successfully");
-    setAvatarOpen(false);
+  const handleLogout = async () => {
+    setLogoutLoading(true);
+    try {
+      await signOutUser();
+      setAvatarOpen(false);
+      toast.success("Logged out successfully");
+      navigate('/');
+    } catch (err) {
+      toast.error("Logout failed. Try again.");
+    } finally {
+      setLogoutLoading(false);
+    }
   };
 
   /* active link style helper */
@@ -180,9 +190,16 @@ export const NavBar = () => {
                     <div className="border-t border-gray-100 mt-1 pt-1">
                       <button
                         onClick={handleLogout}
+                        disabled={logoutLoading}
                         className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-red-500 hover:bg-red-50 transition-colors cursor-pointer border-none bg-transparent"
                       >
-                        <LogOut size={15} /> Logout
+                        {logoutLoading ? (
+                          <span className="loading loading-spinner loading-xs" />
+                        ) : (
+                          <>
+                            <LogOut size={15} /> Logout
+                          </>
+                        )}
                       </button>
                     </div>
                   </div>
