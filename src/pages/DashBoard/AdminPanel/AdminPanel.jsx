@@ -439,7 +439,7 @@ export const AdminPanel = () => {
             </p>
             <div className="flex-1 h-px bg-white/6" />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-24 md:pb-0">
             {quickLinks.map(
               ({ title, description, to, icon: Icon, iconBg, iconColor }) => (
                 <NavLink
