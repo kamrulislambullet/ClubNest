@@ -158,7 +158,6 @@ export const AdminPanel = () => {
               <div className="h-9 w-52 rounded-2xl bg-white/6 animate-pulse" />
               <div className="h-2 w-36 rounded-full bg-white/4 animate-pulse" />
             </div>
-            <div className="w-12 h-12 rounded-2xl bg-white/6 animate-pulse shrink-0" />
           </div>
 
           {/* stat cards */}
@@ -338,14 +337,6 @@ export const AdminPanel = () => {
               </em>
             </h1>
           </div>
-          <img
-            src={
-              user?.photoURL ||
-              `https://ui-avatars.com/api/?name=${user?.displayName}&background=4f7fff&color=fff`
-            }
-            alt="avatar"
-            className="w-12 h-12 rounded-2xl object-cover border border-white/10 shadow-[0_0_20px_rgba(79,127,255,0.2)] shrink-0"
-          />
         </div>
 
         {/* ── Stat cards ── */}
