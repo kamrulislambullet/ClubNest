@@ -62,9 +62,9 @@ const DashBoardNavbar = () => {
         {/* Glass bg */}
         <div className="absolute inset-0 bg-[#0d1424]/90 backdrop-blur-2xl border-r border-white/[0.07]" />
 
-        {/* Subtle aurora inside sidebar */}
+        {/* Aurora blobs */}
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-20 right-0 w-32 h-32 bg-violet-600/08 rounded-full blur-2xl pointer-events-none" />
+        <div className="absolute top-20 right-0 w-32 h-32 bg-violet-600/8 rounded-full blur-2xl pointer-events-none" />
 
         {/* Top accent */}
         <div className="relative h-[3px] shrink-0 bg-linear-to-r from-blue-500 via-indigo-500 to-violet-500" />
@@ -77,7 +77,7 @@ const DashBoardNavbar = () => {
         {/* User pill */}
         {user && (
           <div className="relative px-4 py-4 border-t border-white/[0.07] shrink-0">
-            <div className="flex items-center gap-3 px-3.5 py-3 rounded-2xl bg-white/4 border border-white/[0.07] hover:bg-white/[0.07] hover:border-white/12 transition-all duration-200 cursor-default group">
+            <div className="flex items-center gap-3 px-3.5 py-3 rounded-2xl bg-white/4 border border-white/[0.07] hover:bg-white/[0.07] hover:border-white/12 transition-all duration-200 cursor-default">
               <div className="relative shrink-0">
                 <img
                   src={
@@ -116,18 +116,10 @@ const DashBoardNavbar = () => {
   if (loading) {
     return (
       <Shell>
-        {/* desktop skeleton */}
-        <div className="hidden sm:flex flex-col gap-2 w-full">
-          {[1, 0.55, 0.3].map((op, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-white/4 animate-pulse"
-              style={{ opacity: op }}
-            >
-              <div className="w-9 h-9 rounded-xl bg-white/[0.07] shrink-0" />
-              <div className="h-3 w-28 bg-white/[0.07] rounded-full" />
-            </div>
-          ))}
+        {/* desktop — single skeleton row */}
+        <div className="hidden sm:flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-white/4 animate-pulse w-full">
+          <div className="w-9 h-9 rounded-xl bg-white/[0.07] shrink-0" />
+          <div className="h-3 w-28 bg-white/[0.07] rounded-full" />
         </div>
         {/* mobile skeleton */}
         <div className="sm:hidden w-12 h-12 rounded-2xl bg-white/6 animate-pulse" />
@@ -174,7 +166,7 @@ const DashBoardNavbar = () => {
           to={dashboardItem.to}
           end
           className={({ isActive }) =>
-            `group relative flex items-center gap-3.5 px-4 py-3.5 rounded-2xl border transition-all duration-250 ${
+            `group relative flex items-center gap-3.5 px-4 py-3.5 rounded-2xl border transition-all duration-200 ${
               isActive
                 ? "bg-linear-to-r from-blue-500/18 to-violet-500/10 border-blue-500/25 text-white"
                 : "border-transparent text-white/40 hover:text-white/75 hover:bg-white/5"
@@ -204,7 +196,7 @@ const DashBoardNavbar = () => {
               </span>
 
               {isActive && (
-                <div className="ml-auto flex items-center gap-1">
+                <div className="ml-auto">
                   <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
                 </div>
               )}

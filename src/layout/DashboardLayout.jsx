@@ -5,7 +5,7 @@ export const DashboardLayout = () => {
   return (
     <div>
       <DashBoardNavbar />
-      <main className="flex-1 md:ml-64 pl-8 pr-2 py-8">
+      <main className="flex-1 md:ml-64">
         <Outlet />
       </main>
     </div>
